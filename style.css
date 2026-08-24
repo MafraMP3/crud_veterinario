@@ -1,0 +1,14 @@
+
+body{
+    
+    color: rgb(13, 0, 49);
+    background-image: url(assets/images/Design\ sem\ nome.png), linear-gradient(135deg, white, #d89d3746 );
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
