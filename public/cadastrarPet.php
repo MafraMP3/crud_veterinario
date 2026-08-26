@@ -18,6 +18,9 @@ include "../infra\db\connect.php";
 
 <body>
     <Main>
+        <?php
+        include 'components/navbar.php';
+        ?>
         <div class="container">
 
             <h3>Cadastro de Pets</h3>
@@ -25,29 +28,43 @@ include "../infra\db\connect.php";
             <form method="POST" id="formulario">
 
                 <label class="form-label" for="nomeCliente">Nome:</label>
-                <input class="form-control" type="text" name="nomeCliente" placeholder="Insira o nome" required>
-                
+                <input class="form-control" type="text" name="nomePet" placeholder="Insira o nome" required>
+
                 <br>
                 <br>
 
                 <label class="form-label" for="especie">Espécie:</label>
-                <input class="form-control" type="text" name="especie" placeholder="Insira a espécie" required>
-                                <br>
+                <input class="form-control" type="text" name="especie" placeholder="Insira a espécie pet" required>
+
                 <br>
-                <label class="form-label" for="raca">Raça:</label>
-                <input class="form-control" type="text" name="raca" placeholder="Insira a raça" required>
-                
+                <br>
+
+                <label class="form-label" for="email">Raça:</label>
+                <input class="form-control" type="text" name="raca" placeholder="Insira insira a raça, ou informe SRD" required>
+
                 <br>
                 <br>
 
                 <label class="form-label" for="idade">Idade:</label>
-                <input class="form-control" type="text" name="idade" placeholder="insira a idade" required>
+                <input class="form-control" type="number" name="idade" placeholder="Insira a idade do pet" required>
                 
                 <br>
                 <br>
-                
-                <label class="form-label" for="idade">Responsavel:</label>
-                <input class="form-control" type="text" name="idade" placeholder="insira a idade" required>
+
+             
+                <label class="form-label" for="id_cliente">Selecione o responsável pelo pet:</label>
+                    <select class="form-select" name="id_cliente">
+                            <option value="" selected disabled>
+                                Selecione um usuário
+                            </option>
+
+                        <?php while ($cliente = mysqli_fetch_assoc($clientes)) { ?>
+                                <option value="<?php echo $cliente["idCliente"]; ?>">
+                                    <?php echo $cliente["nome"] ?>
+                                </option>
+                        <?php } ?>
+                        
+                    </select>
                 
                 <br>
                 <br>
@@ -56,6 +73,6 @@ include "../infra\db\connect.php";
             </form>
         </div>
     </Main>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

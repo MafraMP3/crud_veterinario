@@ -1,8 +1,30 @@
 <?php
 
 include "../infra\db\connect.php";
+session_start();
 
 
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $nome = $_POST["nomeCliente"] ?? "";
+    $email = $_POST["email"] ?? "";
+    $telefone = $_POST ["telefone"] ?? "";
+    $endereco = $_POST ["endereco"] ?? "";
+
+if(!empty ($nome) && !empty($email) && !empty($telefone) && !empty($endereco)){
+
+$sql = "INSERT INTO clientes (nome,email,telefone,endereco) VALUES (?,?,?,?)";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt,"ssss", $nome, $email, $telefone, $endereco);
+if(mysqli_stmt_execute($stmt)){
+    header("Location: home.php");
+    exit();
+}
+    mysqli_stmt_close($stmt);
+
+}
+
+}
 
 ?>
 
@@ -51,6 +73,12 @@ include "../infra\db\connect.php";
                 <button type="submit">Enviar</button>
 
             </form>
+        </div>
+        <div>
+        <?php
+        include("components/table_cliente.php")
+
+        ?>
         </div>
     </Main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
