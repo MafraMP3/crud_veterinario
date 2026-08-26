@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'components/navbar.php';
     ?>
 
-    <div class="container">
+    <div class="container card">
 
         <h3>Editar Pet</h3>
 
