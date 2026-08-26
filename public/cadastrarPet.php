@@ -2,7 +2,32 @@
 
 include "../infra\db\connect.php";
 
+$querryClientes = mysqli_query($conn, "SELECT * FROM clientes");
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+
+    $nome = $_POST["nomePet"] ?? "";
+    $especie = $_POST["especie"] ?? "";
+    $raca = $_POST["raca"]?? "";
+    $idade = $_POST ["idade"] ?? "";
+    $cliente_id = $_POST["cliente_id"] ??"";
+
+    if(!empty ($nome) && !empty ($especie) && !empty ($raca) && !empty ($idade) && !empty ($cliente_id)){
+
+    $sql = "INSERT INTO animais (nome,especie,raca,idade,cliente_id) VALUES (?,?,?,?,?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt ,"sssii", $nome, $especie, $raca, $idade, $cliente_id);
+    if(mysqli_stmt_execute($stmt)){
+        header("Location: cadastrarPet.php");
+        exit();
+    }
+
+    mysqli_stmt_close($stmt);
+
+    }
+
+
+}
 
 ?>
 
@@ -46,24 +71,24 @@ include "../infra\db\connect.php";
                 <br>
 
                 <label class="form-label" for="idade">Idade:</label>
-                <input class="form-control" type="number" name="idade" placeholder="Insira a idade do pet" required>
+                <input class="form-control" type="number" name="idade" min="0" placeholder="Insira a idade do pet" required>
                 
                 <br>
                 <br>
 
              
-                <label class="form-label" for="id_cliente">Selecione o responsável pelo pet:</label>
-                    <select class="form-select" name="id_cliente">
+                <label class="form-label" for="cliente_id">Selecione o responsável pelo pet:</label>
+                    <select class="form-select" name="cliente_id">
                             <option value="" selected disabled>
                                 Selecione um usuário
                             </option>
 
-                        <?php while ($cliente = mysqli_fetch_assoc($clientes)) { ?>
-                                <option value="<?php echo $cliente["idCliente"]; ?>">
-                                    <?php echo $cliente["nome"] ?>
+                        <?php while ($clientes = mysqli_fetch_assoc($querryClientes)) { ?>
+                                <option value="<?php echo $clientes["id"]; ?>">
+                                    <?php echo $clientes["nome"] ?>
                                 </option>
                         <?php } ?>
-                        
+
                     </select>
                 
                 <br>
@@ -71,6 +96,12 @@ include "../infra\db\connect.php";
                 <button type="submit">Enviar</button>
 
             </form>
+        </div>
+                <div>
+        <?php
+        include("components/table_animais.php")
+
+        ?>
         </div>
     </Main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

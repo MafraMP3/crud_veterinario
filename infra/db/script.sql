@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS animais (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     especie VARCHAR(255) NOT NULL,
-    raca DECIMAL(10,2) NOT NULL,
+    raca VARCHAR(255) NOT NULL,
     idade INT NOT NULL,
     cliente_id INT NOT NULL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)

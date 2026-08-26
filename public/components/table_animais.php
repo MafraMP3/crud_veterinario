@@ -7,9 +7,10 @@
  <tr>
     <th>ID</th>
     <th>Nome</th>
-    <th>Email</th>
-    <th>Telefone</th>
-    <th>Endereço</th>
+    <th>Espécie</th>
+    <th>Raça</th>
+    <th>Idade</th>
+    <th>Responsável</th>
     <th></th>
     <th></th>
 
@@ -17,20 +18,22 @@
 
  <?php
     
-    $sqlClientes = "SELECT * FROM clientes";
-
+    $sqlAnimais = "SELECT animais.*, clientes.nome AS responsavel
+               FROM animais
+               INNER JOIN clientes ON animais.cliente_id = clientes.id";
     
-    $resultadoClientes = $conn -> query($sqlClientes);
+    $resultadoAnimais = $conn -> query($sqlAnimais);
 
 
-    while ($linha = $resultadoClientes->fetch_assoc()){
+    while ($linha = $resultadoAnimais->fetch_assoc()){
         echo"<tr>
 
             <td>" . $linha["id"] . "</td>
             <td>" . $linha["nome"] . "</td>
-            <td>" . $linha["telefone"] . "</td>
-            <td>" . $linha["email"] . "</td>
-            <td>" . $linha["endereco"] . "</td>
+            <td>" . $linha["especie"] . "</td>
+            <td>" . $linha["raca"] . "</td>
+            <td>" . $linha["idade"] . "</td>
+            <td>" . $linha["responsavel"] . "</td>
             <td>
                 <a href='editar_prato.php?id=" . $linha["id"] . "' 
                    class='btn btn-outline-dark'>
