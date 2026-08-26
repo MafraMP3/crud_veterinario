@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Veterinario</title>
 </head>
 
-<body>
+<body id="bodyindex">
     <Main>
         <div class="card container">
 

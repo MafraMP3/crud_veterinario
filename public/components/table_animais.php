@@ -1,6 +1,6 @@
 
 
-<h4>  Clientes cadastrados  </h4>
+<h4>  Animais cadastrados  </h4>
 
 <table class="table  table-hover m-0 ">
     

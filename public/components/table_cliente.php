@@ -32,7 +32,7 @@
             <td>" . $linha["email"] . "</td>
             <td>" . $linha["endereco"] . "</td>
             <td>
-                <a href='editar_prato.php?id=" . $linha["id"] . "' 
+                <a href='editarCliente.php?id=" . $linha["id"] . "' 
                    class='btn btn-outline-dark'>
                     Editar
                 </a>

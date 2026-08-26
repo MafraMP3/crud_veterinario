@@ -43,43 +43,56 @@ if(mysqli_stmt_execute($stmt)){
         <?php
         include 'components/navbar.php';
         ?>
-        <div class="container">
+ <div class="container py-5">
+    <div class="row g-4">
 
-            <h3>Cadastro de Clientes</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
+                    <h3 class="mb-4">Cadastro de Clientes</h3>
 
-            <form method="POST" id="formulario">
+                    <form method="POST" id="formulario">
+                        <div class="mb-3">
+                            <label class="form-label" for="nomeCliente">Nome</label>
+                            <input class="form-control" type="text" name="nomeCliente" id="nomeCliente" placeholder="Insira o nome" required>
+                        </div>
 
-                <label class="form-label" for="nomeCliente">Nome:</label>
-                <input class="form-control" type="text" name="nomeCliente" placeholder="Insira o nome" required>
-                
-                <br>
-                <br>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="Insira o email" required>
+                        </div>
 
-                <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" name="email" placeholder="Insira o seu email" required>
-                                <br>
-                <br>
-                <label class="form-label" for="telefone">Telefone:</label>
-                <input class="form-control" type="text" name="telefone" placeholder="XX XXXXX-XXXX" required>
-                
-                <br>
-                <br>
+                        <div class="mb-3">
+                            <label class="form-label" for="telefone">Telefone</label>
+                            <input class="form-control" type="text" name="telefone" id="telefone" placeholder="XX XXXXX-XXXX" required>
+                        </div>
 
-                <label class="form-label" for="endereco">Endereço:</label>
-                <input class="form-control" type="text" name="endereco" placeholder="Insira seu Endereço" required>
-                
-                <br>
-                <br>
-                <button type="submit">Enviar</button>
+                        <div class="mb-3">
+                            <label class="form-label" for="endereco">Endereço</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco" placeholder="Insira o endereço" required>
+                        </div>
 
-            </form>
+                        <button type="submit" class="btn btn-primary px-4">Cadastrar cliente</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div>
-        <?php
-        include("components/table_cliente.php")
 
-        ?>
+        <div class="col-md-8">
+    <div class="card shadow-sm border-0 h-100">
+        <div class="card-body p-3">
+
+
+        <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;">
+            <?php include("components/table_cliente.php"); ?>
         </div>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
     </Main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

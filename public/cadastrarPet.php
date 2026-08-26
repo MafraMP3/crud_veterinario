@@ -46,63 +46,75 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <?php
         include 'components/navbar.php';
         ?>
-        <div class="container">
+<div class="container py-5">
+    <div class="row g-4">
 
-            <h3>Cadastro de Pets</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
 
-            <form method="POST" id="formulario">
+                    <h3 class="mb-4">Cadastro de Pets</h3>
 
-                <label class="form-label" for="nomeCliente">Nome:</label>
-                <input class="form-control" type="text" name="nomePet" placeholder="Insira o nome" required>
+                    <form method="POST" id="formulario">
 
-                <br>
-                <br>
+                        <div class="mb-3">
+                            <label class="form-label" for="nomePet">Nome</label>
+                            <input class="form-control" type="text" name="nomePet" id="nomePet" placeholder="Insira o nome" required>
+                        </div>
 
-                <label class="form-label" for="especie">Espécie:</label>
-                <input class="form-control" type="text" name="especie" placeholder="Insira a espécie pet" required>
+                        <div class="mb-3">
+                            <label class="form-label" for="especie">Espécie</label>
+                            <input class="form-control" type="text" name="especie" id="especie" placeholder="Insira a espécie do pet" required>
+                        </div>
 
-                <br>
-                <br>
+                        <div class="mb-3">
+                            <label class="form-label" for="raca">Raça</label>
+                            <input class="form-control" type="text" name="raca" id="raca" placeholder="Informe a raça ou SRD" required>
+                        </div>
 
-                <label class="form-label" for="email">Raça:</label>
-                <input class="form-control" type="text" name="raca" placeholder="Insira insira a raça, ou informe SRD" required>
+                        <div class="mb-3">
+                            <label class="form-label" for="idade">Idade</label>
+                            <input class="form-control" type="number" name="idade" id="idade" min="0" placeholder="Insira a idade do pet" required>
+                        </div>
 
-                <br>
-                <br>
+                        <div class="mb-3">
+                            <label class="form-label" for="cliente_id">Responsável</label>
 
-                <label class="form-label" for="idade">Idade:</label>
-                <input class="form-control" type="number" name="idade" min="0" placeholder="Insira a idade do pet" required>
-                
-                <br>
-                <br>
+                            <select class="form-select" name="cliente_id" id="cliente_id" required>
+                                <option value="" selected disabled>Selecione um responsável</option>
 
-             
-                <label class="form-label" for="cliente_id">Selecione o responsável pelo pet:</label>
-                    <select class="form-select" name="cliente_id">
-                            <option value="" selected disabled>
-                                Selecione um usuário
-                            </option>
+                                <?php while ($clientes = mysqli_fetch_assoc($querryClientes)) { ?>
+                                    <option value="<?php echo $clientes["id"]; ?>">
+                                        <?php echo $clientes["nome"]; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-                        <?php while ($clientes = mysqli_fetch_assoc($querryClientes)) { ?>
-                                <option value="<?php echo $clientes["id"]; ?>">
-                                    <?php echo $clientes["nome"] ?>
-                                </option>
-                        <?php } ?>
+                        <button type="submit" class="btn btn-primary px-4">
+                            Cadastrar pet
+                        </button>
 
-                    </select>
-                
-                <br>
-                <br>
-                <button type="submit">Enviar</button>
+                    </form>
 
-            </form>
+                </div>
+            </div>
         </div>
-                <div>
-        <?php
-        include("components/table_animais.php")
 
-        ?>
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-3">
+
+                    <div class="overflow-auto" style="max-height: 400px;">
+                        <?php include("components/table_animais.php"); ?>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
+    </div>
+</div>
     </Main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
