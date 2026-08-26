@@ -39,7 +39,7 @@
             </td>
 
             <td>
-                <a href='excluir.php?id=" . $linha["id"] . "' 
+ <a href='excluir.php?id=" . $linha["id"] . "&tipo=cliente'
                    class='btn btn-outline-danger'>
                     Excluir
                 </a>

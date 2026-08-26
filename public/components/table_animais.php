@@ -35,14 +35,14 @@
             <td>" . $linha["idade"] . "</td>
             <td>" . $linha["responsavel"] . "</td>
             <td>
-                <a href='editar_prato.php?id=" . $linha["id"] . "' 
+                <a href='editarPet.php?id=" . $linha["id"] . "' 
                    class='btn btn-outline-dark'>
                     Editar
                 </a>
             </td>
 
             <td>
-                <a href='excluir.php?id=" . $linha["id"] . "' 
+                <a href='excluir.php?id=" . $linha["id"] . "&tipo=animal'
                    class='btn btn-outline-danger'>
                     Excluir
                 </a>
